@@ -31,9 +31,6 @@ namespace No8.Solution.Manager
 
             OnStartPrintEventHandler += _logger.OnStartPrinting;
             OnFinishPrintEventHandler += _logger.OnFinishPrinting;
-
-            _repository.Add(_factory.CreateEpsonPrinter());
-            _repository.Add(_factory.CreateCanonPrinter());
         }
 
         /// <summary>

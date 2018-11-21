@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace No8.Solution.Printers
@@ -6,7 +7,7 @@ namespace No8.Solution.Printers
     /// <summary>
     /// Abstract class to represent printer.
     /// </summary>
-    public abstract class Printer
+    public abstract class Printer : IEquatable<Printer>
     {
         private string _name;
         private string _model;
@@ -68,5 +69,15 @@ namespace No8.Solution.Printers
         }
 
         public abstract void Print(FileStream fs);
+
+        public bool Equals(Printer other)
+        {
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other) + " can't compare printer with null.");
+            }
+
+            return this.Name == other.Name && this.Model == other.Model;
+        }
     }
 }

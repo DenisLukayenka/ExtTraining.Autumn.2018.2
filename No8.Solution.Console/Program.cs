@@ -15,6 +15,9 @@ namespace No8.Solution.Console
         [STAThread]
         public static void Main(string[] args)
         {
+            PrinterManager.Add(new EpsonPrinter());
+            PrinterManager.Add(new CanonPrinter());
+
             bool flag = true;
 
             while (flag)
