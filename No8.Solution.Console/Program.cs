@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using No8.Solution;
-using No8.Solution.Manager;
 using No8.Solution.Printers;
 using static System.Console;
 

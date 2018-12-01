@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Factory.cs" company="Dream Solution">
+// Copyright (c) Company. All rights reserved.
+// </copyright>
+// <author>Denis Lukayenka</author>
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +19,18 @@ namespace No8.Solution.Fabrics
     /// </summary>
     public class Factory : AbstractFactory
     {
+        /// <summary>
+        /// Method to create new instance of <see cref="Printer"/> class.
+        /// </summary>
+        /// <param name="name">
+        /// Name of printer.
+        /// </param>
+        /// <param name="model">
+        /// Model of printer.
+        /// </param>
+        /// <returns>
+        /// New instance of <see cref="Printer"/> class.
+        /// </returns>
         public override Printer CreatePrinter(string name, string model)
         {
             switch (name.ToUpperInvariant())

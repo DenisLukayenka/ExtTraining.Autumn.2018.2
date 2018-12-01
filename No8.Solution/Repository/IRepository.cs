@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="IRepository.cs" company="Dream Solution">
+// Copyright (c) Company. All rights reserved.
+// </copyright>
+// <author>Denis Lukayenka</author>
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +14,9 @@ using No8.Solution.Printers;
 
 namespace No8.Solution.Repository
 {
+    /// <summary>
+    /// Interface of repository.
+    /// </summary>
     public interface IRepository
     {
         /// <summary>

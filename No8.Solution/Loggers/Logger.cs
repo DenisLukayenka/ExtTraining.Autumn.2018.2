@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Logger.cs" company="Dream Solution">
+// Copyright (c) Company. All rights reserved.
+// </copyright>
+// <author>Denis Lukayenka</author>
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,11 +19,18 @@ namespace No8.Solution.Loggers
     /// </summary>
     public class Logger : ILogger
     {
-        private string _logFileName;
-        private string _defaultLogFile = "log.txt";
+        /// <summary>
+        /// Path to log file.
+        /// </summary>
+        private string logFileName;
 
         /// <summary>
-        /// Constructor to create new log object.
+        /// Default path to log file.
+        /// </summary>
+        private string defaultLogFile = @"E:\log.txt";
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
         /// <param name="logFileName">
         /// Path to logFile.
@@ -47,15 +61,15 @@ namespace No8.Solution.Loggers
                 throw new FileNotFoundException(nameof(logFileName) + ", can't find file.");
             }
 
-            _logFileName = logFileName;
+            this.logFileName = logFileName;
         }
 
         /// <summary>
-        /// Constructor to create log object with default path to log file.
+        /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
         public Logger()
         {
-            _logFileName = _defaultLogFile;
+            this.logFileName = this.defaultLogFile;
         }
 
         /// <summary>
@@ -82,7 +96,7 @@ namespace No8.Solution.Loggers
                 throw new ArgumentException(nameof(message) + ". Message can't be empty.");
             }
 
-            using (TextWriter writer = File.AppendText(_logFileName))
+            using (TextWriter writer = File.AppendText(this.logFileName))
             {
                 writer.Write(message);
                 writer.WriteLine();

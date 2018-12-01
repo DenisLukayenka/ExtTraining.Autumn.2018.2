@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+// <copyright file="FakeRepository.cs" company="Dream Solution">
+// Copyright (c) Company. All rights reserved.
+// </copyright>
+// <author>Denis Lukayenka</author>
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +19,17 @@ namespace No8.Solution.Repository
     /// </summary>
     public class FakeRepository : IRepository
     {
-        public List<Printer> Printers;
+        /// <summary>
+        /// Collection of printers.
+        /// </summary>
+        private List<Printer> printers;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeRepository"/> class.
+        /// </summary>
         public FakeRepository()
         {
-            Printers = new List<Printer>();
+            this.printers = new List<Printer>();
         }
 
         /// <summary>
@@ -35,9 +48,9 @@ namespace No8.Solution.Repository
                 throw new ArgumentNullException(nameof(printer) + " can't be null.");
             }
 
-            if (!Contains(printer))
+            if (!this.Contains(printer))
             {
-                Printers.Add(printer);
+                this.printers.Add(printer);
             }
         }
 
@@ -57,7 +70,7 @@ namespace No8.Solution.Repository
                 throw new ArgumentNullException(nameof(printer) + " can't be null.");
             }
 
-            return Printers.Contains(printer);
+            return this.printers.Contains(printer);
         }
 
         /// <summary>
@@ -76,7 +89,7 @@ namespace No8.Solution.Repository
                 throw new ArgumentNullException(nameof(printer) + " can't be null.");
             }
 
-            Printers.Remove(printer);
+            this.printers.Remove(printer);
         }
 
         /// <summary>
@@ -87,7 +100,7 @@ namespace No8.Solution.Repository
         /// </returns>
         public IReadOnlyCollection<Printer> GetPrinters()
         {
-            return Printers;
+            return this.printers;
         }
     }
 }
