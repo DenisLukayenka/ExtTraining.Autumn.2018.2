@@ -120,7 +120,7 @@ namespace No8.Solution
         /// <returns>
         /// List of <see cref="Printer"/>.
         /// </returns>
-        public IReadOnlyCollection<Printer> GetList() => this.repository.GetPrinters();
+        public IReadOnlyCollection<Printer> GetPrinters() => this.repository.GetPrinters();
 
         /// <summary>
         /// Method to print.

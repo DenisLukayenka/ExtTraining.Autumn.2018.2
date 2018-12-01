@@ -33,6 +33,16 @@ namespace No8.Solution.Fabrics
         /// </returns>
         public override Printer CreatePrinter(string name, string model)
         {
+            if (name is null)
+            {
+                throw new ArgumentNullException(nameof(name) + " is null.");
+            }
+
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model) + " is null.");
+            }
+
             switch (name.ToUpperInvariant())
             {
                 case "EPSON":

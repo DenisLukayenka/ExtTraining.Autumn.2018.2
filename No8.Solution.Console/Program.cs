@@ -21,7 +21,7 @@ namespace No8.Solution.Console
 
             while (flag)
             {
-                var printers = PrinterManager.GetList();
+                var printers = PrinterManager.GetPrinters();
                 var uniqueNames = UniqueNames(printers);
 
                 ShowMenu(uniqueNames);
