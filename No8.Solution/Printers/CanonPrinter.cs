@@ -22,20 +22,20 @@ namespace No8.Solution.Printers
         /// <summary>
         /// Initializes a new instance of the <see cref="CanonPrinter"/> class.
         /// </summary>
-        public CanonPrinter()
-        {
-            this.Name = "Canon";
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CanonPrinter"/> class.
-        /// </summary>
         /// <param name="model">
         /// Model of printer.
         /// </param>
         public CanonPrinter(string model) : this()
         {
             this.Model = model;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CanonPrinter"/> class.
+        /// </summary>
+        private CanonPrinter()
+        {
+            this.Name = "Canon";
         }
 
         /// <summary>

@@ -22,20 +22,20 @@ namespace No8.Solution.Printers
         /// <summary>
         /// Initializes a new instance of the <see cref="EpsonPrinter"/> class.
         /// </summary>
-        public EpsonPrinter()
-        {
-            this.Name = "Epson";
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EpsonPrinter"/> class.
-        /// </summary>
         /// <param name="model">
         /// Model of printer.
         /// </param>
         public EpsonPrinter(string model) : this()
         {
             this.Model = model;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EpsonPrinter"/> class.
+        /// </summary>
+        private EpsonPrinter()
+        {
+            this.Name = "Epson";
         }
 
         /// <summary>

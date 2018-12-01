@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using No8.Solution;
+using No8.Solution.Fabrics;
 using No8.Solution.Printers;
 using static System.Console;
 
@@ -11,17 +12,20 @@ namespace No8.Solution.Console
 {
     public class Program
     {
+        private static PrinterManager manager = PrinterManager.GetInstance;
+        private static Factory factory = new Factory();
+
         [STAThread]
         public static void Main(string[] args)
         {
-            PrinterManager.Add(new EpsonPrinter());
-            PrinterManager.Add(new CanonPrinter());
+            manager.Add(new EpsonPrinter("1234"));
+            manager.Add(new CanonPrinter("18x-6"));
 
             bool flag = true;
 
             while (flag)
             {
-                var printers = PrinterManager.GetPrinters();
+                var printers = manager.GetPrinters();
                 var uniqueNames = UniqueNames(printers);
 
                 ShowMenu(uniqueNames);
@@ -35,7 +39,7 @@ namespace No8.Solution.Console
 
         private static void Print(Printer printer)
         {
-            PrinterManager.Print(printer);
+            manager.Print(printer, @"E:\SourceFile.txt");
         }
 
         private static void CreatePrinter()
@@ -46,7 +50,7 @@ namespace No8.Solution.Console
             WriteLine("Enter printer model: ");
             string model = ReadLine();
 
-            PrinterManager.Add(PrinterManager.CreatePrinter(name, model));
+            manager.Add(factory.CreatePrinter(name, model));
         }
 
         private static void ShowMenu(List<string> list)
@@ -64,7 +68,7 @@ namespace No8.Solution.Console
             WriteLine($"{index}:Exit.");
         }
 
-        private static bool ActMenu(ConsoleKeyInfo key, List<Printer> printers, List<string> names, int pointToElement)
+        private static bool ActMenu(ConsoleKeyInfo key, IReadOnlyCollection<Printer> printers, List<string> names, int pointToElement)
         {
             int valueKey = (int) Char.GetNumericValue(key.KeyChar);
 
@@ -117,7 +121,7 @@ namespace No8.Solution.Console
             }
         }
 
-        private static List<string> UniqueNames(List<Printer> printers)
+        private static List<string> UniqueNames(IReadOnlyCollection<Printer> printers)
         {
             List<string> uniqueNames = new List<string>();
 

@@ -54,7 +54,6 @@ namespace No8.Solution.Tests
         public void Add_NullPrinter_ArgumentNullException()
             => Assert.Throws<ArgumentNullException>(() => manager.Add(null));
 
-
         #endregion
 
         #region Remove method
@@ -77,7 +76,6 @@ namespace No8.Solution.Tests
         public void Remove_NullPrinter_ArgumentNullException()
             => Assert.Throws<ArgumentNullException>(() => manager.Remove(null));
 
-
         #endregion
 
         #region Get List
@@ -85,13 +83,13 @@ namespace No8.Solution.Tests
         [Test]
         public void GetList_SuccessListOfElements()
         {
-            manager.Add(new CanonPrinter());
-            manager.Add(new EpsonPrinter());
+            manager.Add(new CanonPrinter("1"));
+            manager.Add(new EpsonPrinter("2"));
 
             List<Printer> expectedList = new List<Printer>
             {
-                new CanonPrinter(),
-                new EpsonPrinter()
+                new CanonPrinter("1"),
+                new EpsonPrinter("2")
             };
 
             IReadOnlyCollection<Printer> actualList = manager.GetPrinters();
