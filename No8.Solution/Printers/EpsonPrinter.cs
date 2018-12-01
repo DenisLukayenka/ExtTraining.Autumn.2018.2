@@ -11,21 +11,19 @@ namespace No8.Solution.Printers
     {
         public EpsonPrinter()
         {
-            Model = "231";
             Name = "Epson";
         }
 
-        public override void Print(FileStream fileStream)
+        public EpsonPrinter(string model) : this()
         {
-            if (fileStream is null)
-            {
-                throw new ArgumentNullException(nameof(fileStream) + " can't be null.");
-            }
+            Model = model;
+        }
 
-            for (int i = 0; i < fileStream.Length; i++)
+        protected override void PrintLogic(Stream stream)
+        {
+            for (int i = 0; i < stream.Length; i++)
             {
-                // simulate printing
-                Console.WriteLine(fileStream.ReadByte());
+                Console.WriteLine(stream.ReadByte());
             }
         }
     }

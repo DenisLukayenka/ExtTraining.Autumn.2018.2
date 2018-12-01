@@ -10,11 +10,11 @@ namespace No8.Solution.Repository
     /// <summary>
     /// Class to represent dynamic repository.
     /// </summary>
-    public class DynamicRepository : IRepository
+    public class FakeRepository : IRepository
     {
         public List<Printer> Printers;
 
-        public DynamicRepository()
+        public FakeRepository()
         {
             Printers = new List<Printer>();
         }
@@ -85,11 +85,9 @@ namespace No8.Solution.Repository
         /// <returns>
         /// List of all elements.
         /// </returns>
-        public List<Printer> ToList()
+        public IReadOnlyCollection<Printer> GetPrinters()
         {
-            Printer[] array = new Printer[Printers.Count];
-            Printers.CopyTo(array);
-            return array.ToList();
+            return Printers;
         }
     }
 }

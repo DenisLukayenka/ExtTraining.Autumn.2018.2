@@ -16,9 +16,5 @@ namespace No8.Solution.Loggers
         /// </summary>
         /// <param name="message"></param>
         void Log(string message);
-
-        void OnStartPrinting(object sender, EventArgs args);
-
-        void OnFinishPrinting(object sender, EventArgs args);
     }
 }

@@ -48,6 +48,6 @@ namespace No8.Solution.Repository
         /// <returns>
         /// List of all elements.
         /// </returns>
-        List<Printer> ToList();
+        IReadOnlyCollection<Printer> GetPrinters();
     } 
 }

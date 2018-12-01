@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using No8.Solution.EventsArgs;
 
 namespace No8.Solution.Loggers
 {
@@ -87,50 +86,6 @@ namespace No8.Solution.Loggers
             {
                 writer.Write(message);
                 writer.WriteLine();
-            }
-        }
-
-        /// <summary>
-        /// Method to log about start printing.
-        /// </summary>
-        /// <param name="sender">
-        /// Object of sender.
-        /// </param>
-        /// <param name="args">
-        /// Object with info about event.
-        /// </param>
-        public void OnStartPrinting(object sender, PrintingEventArgs args)
-        {
-            Log($"Printer {args.Name}, {args.Model} start printing. Count of symbols: {args.CountSymbols}.");
-        }
-
-        /// <summary>
-        /// Method to log about finish printing.
-        /// </summary>
-        /// <param name="sender">
-        /// Object of sender.
-        /// </param>
-        /// <param name="args">
-        /// Object with info about event.
-        /// </param>
-        public void OnFinishPrinting(object sender, PrintingEventArgs args)
-        {
-            Log($"Printer {args.Name}, {args.Model} finish printing. Count of symbols: {args.CountSymbols}.");
-        }
-
-        void ILogger.OnStartPrinting(object sender, EventArgs args)
-        {
-            if (args is PrintingEventArgs eventArgs)
-            {
-                OnStartPrinting(sender, eventArgs);
-            }
-        }
-
-        void ILogger.OnFinishPrinting(object sender, EventArgs args)
-        {
-            if (args is PrintingEventArgs eventArgs)
-            {
-                OnFinishPrinting(sender, eventArgs);
             }
         }
     }

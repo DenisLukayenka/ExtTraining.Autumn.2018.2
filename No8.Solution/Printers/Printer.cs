@@ -12,6 +12,9 @@ namespace No8.Solution.Printers
         private string _name;
         private string _model;
 
+        public event EventHandler<PrintEventArgs> startPrint = delegate { };
+        public event EventHandler<PrintEventArgs> finishPrint = delegate { };
+
         /// <summary>
         /// Name of printer.
         /// </summary>
@@ -68,7 +71,31 @@ namespace No8.Solution.Printers
             }
         }
 
-        public abstract void Print(FileStream fs);
+        public void Print(Stream stream)
+        {
+            OnStartPrint();
+
+            PrintLogic(stream);
+
+            OnFinishPrint();
+        }
+
+        public override int GetHashCode()
+        {
+            int hash;
+            unchecked
+            {
+                hash = Name.GetHashCode() + Model.GetHashCode();
+            }
+
+            return hash;
+        }
+
+        protected abstract void PrintLogic(Stream stream);
+
+        protected virtual void OnStartPrint() => startPrint?.Invoke(this, new PrintEventArgs(Name, Model));
+
+        protected virtual void OnFinishPrint() => finishPrint?.Invoke(this, new PrintEventArgs(Name, Model));
 
         public bool Equals(Printer other)
         {
@@ -78,6 +105,22 @@ namespace No8.Solution.Printers
             }
 
             return this.Name == other.Name && this.Model == other.Model;
+        }
+
+        public class PrintEventArgs : EventArgs
+        {
+            public string Name { get; set; }
+
+            public string Model { get; set; }
+
+            public TimeSpan Time { get; set; }
+
+            public PrintEventArgs(string name, string model)
+            {
+                Name = name;
+                Model = model;
+                Time = DateTime.Now.TimeOfDay;
+            }
         }
     }
 }
